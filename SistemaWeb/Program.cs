@@ -1,5 +1,10 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using SistemaWeb.Data;
 var builder = WebApplication.CreateBuilder(args);
-
+var connectionString = builder.Configuration.GetConnectionString("SistemaWebContextConnection");builder.Services.AddDbContext<SistemaWebContext>(options =>
+    options.UseSqlServer(connectionString));builder.Services.AddDefaultIdentity<SistemaWebUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<SistemaWebContext>();
 // Add services to the container.
 builder.Services.AddRazorPages();
 
@@ -17,7 +22,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
