@@ -18,7 +18,8 @@ namespace SistemaWeb.Models
         private DateTime DataVencimento { get; set; }
 
         public virtual Classificacao Classificacao { get; set; }
-        
+        public int IdClassificacao { get; set; }
         public virtual Tipo Tipo { get; set; }
+        public int IdTipo { get; set; }
     }
 }
